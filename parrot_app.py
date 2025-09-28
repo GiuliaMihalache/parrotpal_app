@@ -71,9 +71,17 @@ amount = st.sidebar.number_input("Donate $", min_value=1, step=1)
 if st.sidebar.button("Buy Me Seeds"):
     checkout_session = stripe.checkout.Session.create(
         payment_method_types=['card'],
-        line_items=[{'price_data': {'currency': 'usd','product_data': {'name': 'Buy Me Seeds'},'unit_amount': int(amount*100)}, 'quantity':1}],
+        line_items=[{
+            'price_data': {
+                'currency': 'usd',
+                'product_data': {'name': 'Buy Me Seeds'},
+                'unit_amount': int(amount*100)
+            },
+            'quantity': 1
+        }],
         mode='payment',
         success_url="https://your-app-url/success",
         cancel_url="https://your-app-url/cancel",
     )
-    st.sidebar.write(f
+    st.sidebar.write(f"[Pay ${amount}]({checkout_session.url})")
+
