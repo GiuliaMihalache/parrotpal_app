@@ -3,3 +3,5 @@ firebase-admin
 firebase
 stripe
 pillow
+
+Add firebase-admin to requirements
